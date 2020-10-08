@@ -1,3 +1,5 @@
+# Data Types
+
 #!/bin/python3
 
 import math
