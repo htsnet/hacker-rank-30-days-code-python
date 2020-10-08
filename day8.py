@@ -1,3 +1,5 @@
+# Dictionaries and Maps
+
 # Enter your code here. Read input from STDIN. Print output to STDOUT
 
 number = int(input())
