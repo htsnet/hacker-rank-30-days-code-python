@@ -1,0 +1,36 @@
+def merge_the_tools(string, k):
+    tamanhoString = len(string)
+    qtdeBlocos = int(tamanhoString / k)
+    
+    conjuntos = []
+    start = 0
+    stop = k
+    
+    for i in range(0, qtdeBlocos):
+        conjuntos.append(string[start:stop])
+        start += k
+        stop += k
+        
+
+    for i in conjuntos:
+        letters = set(i)
+        out = ""
+        for j in i:
+            if j in letters:
+                out = out + j
+                letters.remove(j)
+        print(out)
+        
+if __name__ == '__main__':
+    string, k = input(), int(input())
+    merge_the_tools(string, k)        
+    
+    
+#Input (stdin)
+#AABCAAADA
+#3
+
+#Expected Output
+#AB
+#CA
+#AD
