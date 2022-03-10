@@ -1,0 +1,92 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar  9 02:17:03 2022
+
+@author: Hamilton Tenório da Silva
+
+You are given an integer, . Your task is to print an alphabet rangoli of size . (Rangoli is a form of Indian folk art based on creation of patterns.)
+
+#size 3
+
+----c----
+--c-b-c--
+c-b-a-b-c
+--c-b-c--
+----c----
+
+"""
+#just to test here
+size = 5
+
+
+def print_matrix(matrix, m):
+    for i in range(m):
+        line = ''
+        for j in range(m):
+            if matrix[i][j] >= 0:
+                line += letters[matrix[i][j]]
+            else:
+                line += '-'
+            if j < m-1:
+                line += '-'
+        print(line)
+
+m = 2*size - 1 
+array_matrix = [[-1 for i in range(m)] for j in range(m)]
+#print_matrix(array_matrix, m)
+
+# create the letters needed
+letters=''
+for i in range(size):
+    letters+=chr(97+i) # chr(97) = a
+#print(letters)
+
+# find the central point
+central_point = size-1
+array_matrix[central_point][central_point] = 0
+#print_matrix(array_matrix, m)
+
+# fill central column and row 
+count = 1
+for i in range(central_point+1, m):
+    #column
+    array_matrix[i][central_point] = count
+    array_matrix[central_point-count][central_point] = count
+    #row
+    array_matrix[central_point][central_point+count] = count
+    array_matrix[central_point][central_point-count] = count
+    count += 1    
+
+
+
+# include letters
+for i in range(central_point+1, m):
+    for j in range(central_point, m):
+        if array_matrix[i][j] >= 0 and array_matrix[i][j] < size-1 and j+1 < m:
+            array_matrix[i][j+1] = array_matrix[i][j] + 1
+for i in range(central_point+1, m):
+    for j in range(central_point, 0, -1):
+        if array_matrix[i][j] >= 0 and array_matrix[i][j] < size-1 and j+1 < m:
+            array_matrix[i][j-1] = array_matrix[i][j] + 1
+for i in range(central_point-1, 0, -1):
+    for j in range(central_point, m):
+        if array_matrix[i][j] >= 0 and array_matrix[i][j] < size -1 and j-1 < m:
+            array_matrix[i][j+1] = array_matrix[i][j] + 1
+for i in range(central_point-1, 0, -1):
+    for j in range(central_point, 0, -1):
+        if array_matrix[i][j] >= 0 and array_matrix[i][j] < size -1 and j-1 < m:
+            array_matrix[i][j-1] = array_matrix[i][j] + 1            
+    
+print_matrix(array_matrix, m)
+
+
+# result for size = 5
+#--------e--------
+#------e-d-e------
+#----e-d-c-d-e----
+#--e-d-c-b-c-d-e--
+#e-d-c-b-a-b-c-d-e
+#--e-d-c-b-c-d-e--
+#----e-d-c-d-e----
+#------e-d-e------
+#--------e--------
