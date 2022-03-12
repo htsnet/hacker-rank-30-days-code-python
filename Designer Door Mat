@@ -1,0 +1,76 @@
+'''
+Mr. Vincent works in a door mat manufacturing company. One day, he designed a new door mat with the following specifications:
+
+Mat size must be X. ( is an odd natural number, and  is  times .)
+The design should have 'WELCOME' written in the center.
+The design pattern should only use |, . and - characters.
+Sample Designs
+
+    Size: 7 x 21 
+    ---------.|.---------
+    ------.|..|..|.------
+    ---.|..|..|..|..|.---
+    -------WELCOME-------
+    ---.|..|..|..|..|.---
+    ------.|..|..|.------
+    ---------.|.---------
+    
+    Size: 11 x 33
+    ---------------.|.---------------
+    ------------.|..|..|.------------
+    ---------.|..|..|..|..|.---------
+    ------.|..|..|..|..|..|..|.------
+    ---.|..|..|..|..|..|..|..|..|.---
+    -------------WELCOME-------------
+    ---.|..|..|..|..|..|..|..|..|.---
+    ------.|..|..|..|..|..|..|.------
+    ---------.|..|..|..|..|.---------
+    ------------.|..|..|.------------
+    ---------------.|.---------------
+Input Format
+
+A single line containing the space separated values of  and .
+
+Constraints
+
+Output Format
+
+Output the design pattern.
+
+Sample Input
+
+9 27
+Sample Output
+
+------------.|.------------
+---------.|..|..|.---------
+------.|..|..|..|..|.------
+---.|..|..|..|..|..|..|.---
+----------WELCOME----------
+---.|..|..|..|..|..|..|.---
+------.|..|..|..|..|.------
+---------.|..|..|.---------
+------------.|.------------
+'''
+
+
+entry = input()
+
+# get the entry and separate the numbers
+parts = entry.split(' ')
+n = int(parts[0])
+m = int(parts[1])
+
+pattern = '.|.'
+
+# top part
+for i in range(n//2):
+    line = pattern * (i * 2 + 1) 
+    print(line.center(m, '-'))
+    
+print('WELCOME'.center(m, '-'))    
+
+# bottom part
+for i in range(n//2 - 1, -1, -1):
+    line = pattern * (i * 2 + 1) 
+    print(line.center(m, '-'))
